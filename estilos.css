@@ -1,0 +1,712 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: white;
+}
+
+.menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.85);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    min-width: 450px;
+    backdrop-filter: blur(10px);
+    border: 2px solid #0f3460;
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+    animation: aparecer 0.5s ease;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.menu h1 {
+    color: #00ffff;
+    margin-bottom: 30px;
+    font-size: 42px;
+    text-shadow: 0 0 15px #00ffff;
+    letter-spacing: 2px;
+}
+
+.menu h2 {
+    color: #00ffff;
+    margin-bottom: 25px;
+    font-size: 32px;
+    text-shadow: 0 0 10px #00ffff;
+}
+
+.input-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #0f3460;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #00ffff;
+    box-shadow: 0 0 15px #00ffff;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 16px 30px;
+    background: linear-gradient(45deg, #00ffff, #00ccff);
+    border: none;
+    border-radius: 12px;
+    color: #1a1a2e;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid transparent;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #00ffff;
+    border-color: white;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn-secundario {
+    background: linear-gradient(45deg, #ff3366, #ff0066);
+}
+
+.btn-secundario:hover {
+    box-shadow: 0 0 25px #ff3366;
+}
+
+.btn-iniciar {
+    background: linear-gradient(45deg, #00ff00, #00cc00);
+}
+
+.btn-iniciar:hover {
+    box-shadow: 0 0 25px #00ff00;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Sala de espera */
+.sala-info {
+    background: rgba(15, 52, 96, 0.5);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    border: 1px solid #00ffff;
+}
+
+.sala-info p {
+    margin: 8px 0;
+    font-size: 18px;
+}
+
+.codigo-destacado {
+    background: #00ffff;
+    color: #1a1a2e;
+    padding: 5px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 22px;
+    letter-spacing: 2px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.jugadores-lista {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    max-height: 350px;
+    overflow-y: auto;
+    border: 1px solid #0f3460;
+}
+
+.jugadores-lista h3 {
+    color: #00ffff;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.jugadores-lista ul {
+    list-style: none;
+}
+
+.jugadores-lista li {
+    padding: 15px;
+    margin: 8px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid #00ffff;
+    animation: aparecerLista 0.3s ease;
+}
+
+@keyframes aparecerLista {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.jugador-listo {
+    color: #00ff00;
+    font-weight: bold;
+    background: rgba(0, 255, 0, 0.1);
+    padding: 5px 12px;
+    border-radius: 20px;
+}
+
+.jugador-no-listo {
+    color: #ff3366;
+    font-weight: bold;
+    background: rgba(255, 51, 102, 0.1);
+    padding: 5px 12px;
+    border-radius: 20px;
+}
+
+.creador-badge {
+    background: #00ffff;
+    color: #1a1a2e;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 10px;
+    text-transform: uppercase;
+}
+
+.contador {
+    margin-top: 15px;
+    color: #888;
+    font-size: 14px;
+}
+
+/* Canvas del juego */
+#juego-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    background: #1e1e2e;
+    cursor: crosshair;
+}
+
+/* HUD */
+.hud {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    border: 2px solid #00ffff;
+    border-radius: 15px;
+    color: white;
+    font-size: 18px;
+    z-index: 1000;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.hud-info {
+    display: flex;
+    gap: 40px;
+}
+
+.hud-info span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.hud-info span span {
+    color: #00ffff;
+    font-weight: bold;
+    font-size: 22px;
+    text-shadow: 0 0 10px #00ffff;
+}
+
+.hud-controles {
+    color: #aaa;
+    font-size: 16px;
+}
+
+/* Notificaciones */
+.notificaciones {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2000;
+}
+
+.notificacion {
+    background: rgba(0, 0, 0, 0.9);
+    border-left: 5px solid #00ffff;
+    padding: 15px 25px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color: white;
+    animation: notificacion 0.5s ease;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+@keyframes notificacion {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00ffff;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #00ccff;
+}
+
+/* Efectos de hover */
+.btn, .jugadores-lista li {
+    transition: all 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .menu {
+        min-width: 90%;
+        padding: 30px;
+    }
+    
+    .hud {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .hud-info {
+        justify-content: center;
+    }
+}
+
+/* Selector de personajes */
+.selector-personajes {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.95);
+    padding: 30px;
+    border-radius: 20px;
+    border: 3px solid #00ffff;
+    box-shadow: 0 0 50px rgba(0, 255, 255, 0.5);
+    z-index: 3000;
+    min-width: 800px;
+    animation: aparecer 0.3s ease;
+}
+
+.selector-personajes h2 {
+    color: #00ffff;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 32px;
+    text-shadow: 0 0 10px #00ffff;
+}
+
+.personajes-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.personaje-card {
+    text-align: center;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s;
+    flex: 1;
+}
+
+.personaje-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #00ffff;
+}
+
+.personaje-card img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 2px solid #00ffff;
+}
+
+.personaje-card h3 {
+    color: white;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.personaje-card .btn {
+    padding: 10px 30px;
+    font-size: 16px;
+}
+
+.selector-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.selector-footer p {
+    color: #aaa;
+    margin-bottom: 10px;
+}
+
+.selector-footer .highlight {
+    color: #ffff00;
+}
+
+/* Mensaje de muerte */
+.mensaje-muerte {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    padding: 30px 60px;
+    border-radius: 20px;
+    border: 3px solid #ff3366;
+    box-shadow: 0 0 50px rgba(255, 51, 102, 0.5);
+    color: white;
+    text-align: center;
+    z-index: 2000;
+    animation: aparecer 0.5s ease;
+}
+
+.mensaje-muerte h2 {
+    color: #ff3366;
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #ff3366;
+}
+
+.mensaje-muerte p {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.mensaje-muerte .contador {
+    font-size: 72px;
+    color: #00ffff;
+    font-weight: bold;
+    text-shadow: 0 0 20px #00ffff;
+}
+
+.mensaje-muerte .small {
+    font-size: 18px;
+    color: #aaa;
+    margin-top: 20px;
+}
+
+/* ============================================
+   NUEVOS ESTILOS PARA EL TEMPORIZADOR Y LEADERBOARD
+   ============================================ */
+
+/* Reloj de partida */
+.reloj-partida {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(45deg, #00ffff, #00ccff);
+    color: #1a1a2e;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border: 2px solid white;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
+    z-index: 1500;
+    animation: aparecerReloj 0.5s ease;
+    backdrop-filter: blur(5px);
+}
+
+@keyframes aparecerReloj {
+    from {
+        opacity: 0;
+        top: -50px;
+    }
+    to {
+        opacity: 1;
+        top: 20px;
+    }
+}
+
+@keyframes pulsar {
+    0% {
+        transform: translateX(-50%) scale(1);
+        box-shadow: 0 0 30px rgba(255, 0, 0, 0.7);
+    }
+    50% {
+        transform: translateX(-50%) scale(1.1);
+        box-shadow: 0 0 50px rgba(255, 0, 0, 0.9);
+    }
+    100% {
+        transform: translateX(-50%) scale(1);
+        box-shadow: 0 0 30px rgba(255, 0, 0, 0.7);
+    }
+}
+
+/* Mejoras en el leaderboard */
+.leaderboard {
+    min-width: 600px;
+    background: rgba(0, 0, 0, 0.95);
+    border: 3px solid #00ffff;
+    animation: aparecerLeaderboard 0.8s ease;
+}
+
+@keyframes aparecerLeaderboard {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -30%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.ganador-destacado {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 25px;
+    background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.4));
+    border-radius: 15px;
+    border: 2px solid gold;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+}
+
+.ganador-destacado .trofeo {
+    font-size: 60px;
+    animation: girarTrofeo 1s ease;
+}
+
+@keyframes girarTrofeo {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+.ganador-destacado h3 {
+    font-size: 36px;
+    color: gold;
+    margin: 10px 0;
+    text-shadow: 0 0 15px gold;
+}
+
+.ganador-destacado p {
+    font-size: 24px;
+    color: white;
+    margin: 5px 0;
+}
+
+.ganador-destacado .estadisticas-ganador {
+    font-size: 28px;
+    color: #00ffff;
+    font-weight: bold;
+    text-shadow: 0 0 10px #00ffff;
+}
+
+.leaderboard li {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    font-size: 18px;
+    transition: all 0.3s;
+}
+
+.leaderboard li:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px currentColor;
+}
+
+.primer-lugar {
+    background: linear-gradient(45deg, rgba(255, 215, 0, 0.3), rgba(255, 215, 0, 0.5));
+    border-left: 8px solid gold !important;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.segundo-lugar {
+    background: linear-gradient(45deg, rgba(192, 192, 192, 0.3), rgba(192, 192, 192, 0.5));
+    border-left: 8px solid silver !important;
+}
+
+.tercer-lugar {
+    background: linear-gradient(45deg, rgba(205, 127, 50, 0.3), rgba(205, 127, 50, 0.5));
+    border-left: 8px solid #cd7f32 !important;
+}
+
+.leaderboard .puntuacion {
+    font-weight: bold;
+    color: #00ffff;
+}
+
+.leaderboard .primer-lugar .puntuacion {
+    color: gold;
+    text-shadow: 0 0 10px gold;
+}
+
+/* Animación para cuando termina la partida */
+@keyframes finPartida {
+    0% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(1.5);
+    }
+    100% {
+        filter: brightness(1);
+    }
+}
+
+.fin-partida-animation {
+    animation: finPartida 1s ease;
+}
+
+/* Responsive para el leaderboard y reloj */
+@media (max-width: 768px) {
+    .reloj-partida {
+        font-size: 20px;
+        padding: 8px 20px;
+        top: 10px;
+    }
+    
+    .leaderboard {
+        min-width: 95%;
+        padding: 20px;
+    }
+    
+    .ganador-destacado h3 {
+        font-size: 24px;
+    }
+    
+    .ganador-destacado p {
+        font-size: 18px;
+    }
+    
+    .ganador-destacado .estadisticas-ganador {
+        font-size: 20px;
+    }
+    
+    .leaderboard li {
+        font-size: 14px;
+        padding: 10px;
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+    }
+    
+    .selector-personajes {
+        min-width: 95%;
+        padding: 20px;
+    }
+    
+    .personajes-container {
+        flex-direction: column;
+    }
+    
+    .personaje-card img {
+        width: 100px;
+        height: 100px;
+    }
+}

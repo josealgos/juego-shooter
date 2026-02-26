@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shooter Multiplayer - 5 Minutos</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <div id="menu-principal" class="menu">
+        <h1>🔫 SHOOTER MULTIPLAYER</h1>
+        <p style="color: #00ffff; margin-bottom: 20px; font-size: 18px;">⏰ Partidas de 5 minutos</p>
+        
+        <div class="input-group">
+            <label for="nombre-player">👤 Nombre del jugador:</label>
+            <input type="text" id="nombre-player" placeholder="Ingresa tu nombre" maxlength="20" value="Jugador" autocomplete="off">
+        </div>
+        
+        <div class="button-group">
+            <button id="btn-crear-sala" class="btn">🎮 CREAR SALA</button>
+            <button id="btn-unirse-sala" class="btn btn-secundario">🔌 UNIRSE A SALA</button>
+        </div>
+    </div>
+
+    <div id="crear-sala" class="menu" style="display: none;">
+        <h2>🎮 CREAR SALA</h2>
+        
+        <div class="input-group">
+            <label for="nombre-sala">📋 Nombre de la sala:</label>
+            <input type="text" id="nombre-sala" placeholder="Nombre de la sala" maxlength="30" value="Sala de Guerra" autocomplete="off">
+        </div>
+        
+        <div class="input-group">
+            <label for="max-jugadores">👥 Jugadores máximos (2-10):</label>
+            <input type="number" id="max-jugadores" min="2" max="10" value="5">
+        </div>
+        
+        <div style="background: rgba(0, 255, 255, 0.1); padding: 10px; border-radius: 8px; margin-bottom: 20px;">
+            <p style="color: #00ffff;">⏰ Duración de la partida: <strong>5 MINUTOS</strong></p>
+        </div>
+        
+        <button id="btn-confirmar-crear" class="btn">✅ CREAR SALA</button>
+        <button id="btn-volver-menu" class="btn btn-secundario">↩️ VOLVER</button>
+    </div>
+
+    <div id="unirse-sala" class="menu" style="display: none;">
+        <h2>🔌 UNIRSE A SALA</h2>
+        
+        <div class="input-group">
+            <label for="codigo-sala">🔑 Código de la sala:</label>
+            <input type="text" id="codigo-sala" placeholder="Ej: ABC123" maxlength="6" autocomplete="off" style="text-transform:uppercase">
+        </div>
+        
+        <button id="btn-confirmar-unirse" class="btn">✅ UNIRSE</button>
+        <button id="btn-volver-menu2" class="btn btn-secundario">↩️ VOLVER</button>
+    </div>
+
+    <div id="sala-espera" class="menu" style="display: none;">
+        <h2>⏳ SALA DE ESPERA</h2>
+        
+        <div class="sala-info">
+            <p><strong>📌 Sala:</strong> <span id="sala-nombre"></span></p>
+            <p><strong>🔑 Código:</strong> <span id="sala-codigo" class="codigo-destacado"></span></p>
+            <p style="margin-top: 10px; color: #00ffff;"><strong>⏰ Duración:</strong> 5 minutos</p>
+        </div>
+        
+        <div class="jugadores-lista">
+            <h3>👥 Jugadores en sala:</h3>
+            <ul id="lista-jugadores"></ul>
+            <p id="contador-jugadores" class="contador"></p>
+        </div>
+        
+        <div class="button-group">
+            <button id="btn-listo" class="btn">✅ LISTO</button>
+            <button id="btn-iniciar" class="btn btn-iniciar" style="display: none;">🎮 INICIAR PARTIDA</button>
+        </div>
+    </div>
+
+    <canvas id="juego-canvas" style="display: none;"></canvas>
+
+    <div id="hud" class="hud" style="display: none;">
+        <div class="hud-info">
+            <span>❤️ Vida: <span id="vida-jugador">100</span>%</span>
+            <span>🔫 Balas: <span id="balas-jugador">30</span>/30</span>
+            <span>🏆 Puntuación: <span id="puntuacion-jugador">0</span></span>
+        </div>
+        <div class="hud-controles">
+            🎮 WASD: Moverse | R: Recargar | Click: Disparar | M: Personajes
+        </div>
+    </div>
+
+    <div id="notificaciones" class="notificaciones"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="juego.js"></script>
+</body>
+</html>
